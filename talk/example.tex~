@@ -3,10 +3,8 @@
 \usepackage{graphicx}
 \usepackage{natbib}
 \usepackage{epstopdf}
-\usepackage{subfig}
 \makeatletter
-\@addtoreset{subfigure}{figure}
-\makeatother
+
 \usepackage{listings}
 \usetheme{Boadilla}
 
@@ -18,13 +16,14 @@
 
 \begin{document}
 
-\title[Tau Guidance]{Autonomous Perching Quadcopters \\Time-to-Contact Guidance}
+\title[Tau Guidance]{Autonomous Perching Quadcopters \\ Time-to-Contact Guidance}
 \author{Suhas Srinivasan}
 \institute[Purdue University]
 {
   AAE\\
   Purdue University
 }
+
 \begin{frame}
   \titlepage
   \begin{center}
@@ -38,12 +37,12 @@
 \def\omitnode{\Tr*[edge=\dedge]{}}
 
 \begin{frame}[<+->]{Time-to-Contact (Tau) Theory}
-    \begin{itemize}
-  \item The idea is that animals guide themselves towards their target by closely monitoring the rate of closure of the relative distance between them~\cite{Lee1998}.
+\begin{itemize}
+  \item The idea is that animals guide themselves towards their target by closely monitoring the rate of closure of the relative distance between them \cite{Lee1998}.
   \item From the tried and tested \(s = vt\):\\
   \item \(\tau = \dfrac{\chi}{\dot{\chi}}\)\\
     where\\
-    \( \tau \rightarrow \text{time to contact}\)\\ \(\chi \rightarrow \text{Spatial Gap}\)
+    \( \tau \rightarrow \text{time to contact}\\\) \(\chi \rightarrow \text{Spatial Gap}\)
 \end{itemize}
 \end{frame}
 \begin{frame}[allowframebreaks]{Intrinsic Tau Guidance}
@@ -58,44 +57,20 @@
       \begin{itemize}
 	\item Building on the above, it is possible to close multiple gaps(\(\chi_x, \chi_y\)) simultaneously by keeping their times to contact in a specific ratio \(k_{x,y}\) such that \(\tau_y = k_{x,y}k_x \tau_x\)
 	\item By adjusting \(k_{x,y}\) to make the value of \(k_y = k_{x,y}k_x\) smaller or larger, one can prioritize which gaps are closed first (useful for lining up to a target during the perch sequence)
-  \item \( y = Cx^{1/k_{x,y}}\) where $ C= \frac{y_0}{x_0^{1/k_{x,y}}}$
       \end{itemize}
   \end{description}
   \begin{description}
     \item[Intrinsic \(\tau\) Guidance]\hfill
       \begin{itemize}
-	\item \cite{Lee1998} postulates that organisms can generate a temporal guide (\(\tau_g\)) based on how much time ahead of their current state they intend to reach their target.
+	\item \cite{Lee1998} postulates that organisms can generate a temporal guide (\(\tau_g\)) based on how much time ahead of their current state they intend to reach their target. 
 	\item \(\tau_g = \dfrac{k}{2}\left(t -\dfrac{t_f^2}{t}\right) \)
 	\item This leads to the following desired profile
 	  \begin{itemize}
 	    \item $\chi = \dfrac{\chi_0}{t_f^{2/k}}\left(t_f^2-t^2 \right)^{1/k}$
 	    \item which tends to be a skewed sigmoid curve
 	  \end{itemize}
-    \item Generally $k\in[0,0.5)$ to reach the goal point with a zero velocity and acceleration
       \end{itemize}
   \end{description}
-  \begin{figure}[h!]
-  \centering
-  \subfloat[]{\includegraphics[width = 0.4\linewidth]{tau_z.eps}}
-  \subfloat[]{\includegraphics[width = 0.4\linewidth]{tau_dz.eps}}
-  \\
-  \subfloat[]{\includegraphics[width = 0.4\linewidth]{tau_ddz.eps}}
-  \end{figure}
-
-\end{frame}
-\begin{frame}[allowframebreaks]{6DoF Simulations}
-\includegraphics[width = \linewidth]{Simulink.png}
-\begin{figure}[h]
-\subfloat[]{\includegraphics[width=0.4\linewidth]{tau_z_6dof}}
-\subfloat[]{\includegraphics[width=0.4\linewidth]{tau_x_6dof}}
-\end{figure}
-\end{frame}
-\begin{frame}[allowframebreaks]{Remaining Work}
-\begin{itemize}
-  \item ROS/SITL Simulations
-  \item HITL/Experiments
-  \item Camera intgration
-\end{itemize}
 \end{frame}
 \begin{frame}[allowframebreaks]{References}
   \bibliographystyle{plain}
